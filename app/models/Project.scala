@@ -6,7 +6,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Project(id: Pk[Long], name: String, description: String, repo: String, score: Int = 0)
+case class Project(id: Pk[Long], name: String, description: String, repo: String, score: Int = 0, validated: Boolean = false)
 
 object Project {
 
@@ -20,8 +20,9 @@ object Project {
     get[String]("project.description") ~/
     get[String]("project.name") ~/
     get[Int]("project.score") ~/
+    get[Boolean]("project.validated") ~/
     get[String]("project.repo") ^^ {
-      case id~description~name~score~repo => Project(id, name, description, repo, score)
+      case id~description~name~score~validated~repo => Project(id, name, description, repo, score, validated)
     }
   }
 
@@ -36,12 +37,18 @@ object Project {
     }
   }
 
+  def findValidated: Seq[Project] = {
+    DB.withConnection { implicit connection =>
+      SQL("select * from project where validated = true order by score desc").as(Project.simple *)
+    }
+  }
+
   /**
    * Retrieve a Project from id.
    */
   def findById(id: Long): Option[Project] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from project where id = {id}").on(
+      SQL("select * from project where validated = true and id = {id}").on(
         'id -> id
       ).as(Project.simple ?)
     }
@@ -73,7 +80,7 @@ object Project {
        SQL(
          """
            insert into project values (
-             {id}, {name}, {description}, {repo}, {score}
+             {id}, {name}, {description}, {repo}, {score}, {validated}
            )
          """
        ).on(
@@ -81,7 +88,8 @@ object Project {
          'name -> project.name,
          'description -> project.description,
          'repo -> project.repo,
-         'score -> project.score
+         'score -> project.score,
+         'validated -> project.validated
        ).executeUpdate()
 
        project.copy(id = Id(id))

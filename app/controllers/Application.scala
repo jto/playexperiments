@@ -35,7 +35,7 @@ object Application extends Controller {
   val Home = Redirect(routes.Application.index)
 
   def index = Action {
-    Ok(views.html.index(Project.findAll))
+    Ok(views.html.index(Project.findValidated))
   }
 
   def saveProject = Action{ implicit request =>

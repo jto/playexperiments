@@ -13,7 +13,8 @@ create table project (
   name                      varchar(255) not null,
   description               varchar(255) not null,
   repo                      varchar(255) not null,
-  score                     int not null
+  score                     int not null,
+  validated                 boolean not null
 );
 
 create sequence project_seq start with 1000;
