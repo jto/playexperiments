@@ -20,9 +20,18 @@ object Forms{
       "project.score" -> ignored(0),
       "project.validated" -> ignored(false),
       "project.image" -> text,
-      "project.author" -> requiredText
+      "author.email" -> text
     )
   )
+
+  val authorForm = Form(
+    of(Author.apply _)(
+      "author.email" -> requiredText,
+      "author.name" -> requiredText,
+      "author.url" -> optional(text)
+    )
+  )
+
 }
 
 object Application extends Controller {
@@ -39,20 +48,31 @@ object Application extends Controller {
     Ok(views.html.index(Project.findAll))
   }
 
-  def submitProject = Action {
+  def submit = Action {
     // TODO
     Ok(views.html.submitProject(projectForm))
   }
 
-  def saveProject = Action{ implicit request =>
-    projectForm.bindFromRequest.fold(
+  def save = Action{ implicit request =>
+    // XXX: don't like this {{{ }}}
+    authorForm.bindFromRequest.fold(
       errors => BadRequest,
       {
-        case project: Project =>
-          val p = Project.create(project)
-          Home.flashing("success" -> "Experiment %s has been updated".format(p.name))
+        case auth: Author => {
+          projectForm.bindFromRequest.fold(
+            errors => BadRequest,
+            {
+              case project: Project =>
+                // It's unlikely to fail, but still, should be transactionnal
+                val a = Author.create(auth)
+                val p = Project.create(project)
+                Home.flashing("success" -> "Experiment %s has been updated".format(p.name))
+            }
+          )
+        }
       }
     )
+
   }
 
   def validate(id: Long) = Action{ implicit request =>

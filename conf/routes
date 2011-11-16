@@ -6,9 +6,9 @@
 GET     /                           controllers.Application.index()
 GET     /all                        controllers.Application.all()
 # POST    /saveUser                 controllers.Application.saveUser()
-POST    /saveProject                controllers.Application.saveProject()
+POST    /save                       controllers.Application.save()
 GET     /upvote/:id                 controllers.Application.upvote(id: Long)
-GET     /submit                     controllers.Application.submitProject()
+GET     /submit                     controllers.Application.submit()
 POST    /validate/:id               controllers.Application.validate(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path

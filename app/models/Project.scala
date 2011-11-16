@@ -29,9 +29,9 @@ object Project {
     get[Int]("project.score") ~/
     get[Boolean]("project.validated") ~/
     get[String]("project.image") ~/
-    get[String]("project.author") ~/
+    get[String]("project.author_email") ~/
     get[String]("project.repo") ^^ {
-      case id~description~name~score~validated~image~author~repo => Project(id, name, description, repo, score, validated, image, author)
+      case id ~ description ~ name ~ score ~ validated ~ image ~ author ~ repo => Project(id, name, description, repo, score, validated, image, author)
     }
   }
 

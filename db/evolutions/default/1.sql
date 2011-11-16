@@ -2,10 +2,10 @@
 
 # --- !Ups
 
-create table user (
+create table author (
   email                     varchar(255) not null primary key,
   name                      varchar(255) not null,
-  password                  varchar(255) not null
+  url                       varchar(255)
 );
 
 create table project (
@@ -16,21 +16,14 @@ create table project (
   score                     int not null,
   validated                 boolean not null,
   image                     varchar(255) not null,
-  author                    varchar(255) not null,
+  author_email              varchar(255) not null,
+  foreign key(author_email) references author(email) on delete cascade
 );
 
 create sequence project_seq start with 1000;
 
-create table project_member (
-  project_id                bigint not null,
-  user_email                varchar(255) not null,
-  foreign key(project_id)   references project(id) on delete cascade,
-  foreign key(user_email)   references user(email) on delete cascade
-);
-
 # --- !Downs
 
-drop table if exists project_member;
 drop table if exists project;
+drop table if exists author;
 drop sequence if exists project_seq;
-drop table if exists user;

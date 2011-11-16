@@ -5,13 +5,15 @@
 
 @main("Welcome to PlayExperiments") {
   <h2>Create</h2>
-  @form(routes.Application.saveProject) {
+  @form(routes.Application.save) {
     <fieldset>
       @inputText(pf("project.name"), 'label -> "Experiment name")(exinput)
       @inputText(pf("project.description"), 'label -> "description")(exinput)
       @inputText(pf("project.repo"), 'label -> "repository")(exinput)
       @inputText(pf("project.image"), 'label -> "image")(exinput)
-      @inputText(pf("project.author"), 'label -> "author")(exinput)
+      @inputText(pf("author.email"), 'label -> "author email")(exinput)
+      @inputText(pf("author.name"), 'label -> "author name")(exinput)
+      @inputText(pf("author.url"), 'label -> "author url")(exinput)
     </fieldset>
     <input type="submit" value="Submit this experiment">
   }
