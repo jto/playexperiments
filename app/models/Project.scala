@@ -107,4 +107,12 @@ object Project {
       ).executeUpdate()
     }
   }
+
+  def validate(id: Long) {
+    DB.withConnection { implicit connection =>
+      SQL("update project set validated = true where id = {id}").on(
+        'id -> id
+      ).executeUpdate()
+    }
+  }
 }

@@ -1,0 +1,16 @@
+@(pf: Form[models.Project])
+
+@import helper._
+@import controllers.Forms._
+
+@main("Welcome to PlayExperiments") {
+  <h2>Create</h2>
+  @form(routes.Application.saveProject) {
+    <fieldset>
+      @inputText(pf("project.name"), 'label -> "Experiment name")(exinput)
+      @inputText(pf("project.description"), 'label -> "description")(exinput)
+      @inputText(pf("project.repo"), 'label -> "repository")(exinput)
+    </fieldset>
+    <input type="submit" value="Submit this experiment">
+  }
+}
