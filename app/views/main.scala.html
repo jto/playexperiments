@@ -4,13 +4,22 @@
     <head>
         <title>@title</title>
         <meta charset="utf-8">
-        <link rel="stylesheet/less" media="screen" type="text/css" href="@routes.Assets.at("stylesheets/reset.less")">
-        <link rel="stylesheet/less" media="screen" type="text/css" href="@routes.Assets.at("stylesheets/styles.less")">
+        <link rel="stylesheet" media="screen" type="text/css" href="@routes.Assets.at("stylesheets/reset.css")">
+        <link rel="stylesheet" media="screen" type="text/css" href="@routes.Assets.at("stylesheets/styles.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/less-1.1.5.min.js")" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
-        @content
+        <div class="container">
+            <div class="header">
+                <span id="play"> Play </span> <span id="exp">Experiments</span>
+                <h1>Welcome to the <i>!Play</i> experiments</h1>
+                <h2>enter the game, si t'en es capable ;-) dhuhdow qh hdiowhq f f few0 i jfew</h2>
+                <button>Submit Experiment</button>
+            </div>
+            <div class="content">
+                @content
+            </div>
+        </div>
         <script src="@routes.Assets.at("javascripts/jquery-1.7.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
     </body>

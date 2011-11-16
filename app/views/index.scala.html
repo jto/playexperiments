@@ -4,6 +4,115 @@
 @import controllers.Forms._
 
 @main("Welcome to PlayExperiments") {
+  <h2>Featured experiments</h2>
+
+  <ul class="featured">
+      <li>
+          <div class="featured-img">
+            <div class="pic"></div>
+          </div>
+          <div class="featured-desc">
+              <h3>Wallet</h3> <span>by Maxime Dantec</span>
+              <p>eiwdjeiw deow jdioe wjdioe jwiodj eiow jife ijf ewjfo eiow jfoewoi jfoie wjoif oiew jio</p>
+              <div class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="featured-img">
+            <div class="pic"></div>
+          </div>
+          <div class="featured-desc">
+              <h3>Wallet</h3> <span>by Maxime Dantec</span>
+              <p>eiwdjeiw deow jdioe wjdioe jwiodj eiow jife ijf ewjfo eiow jfoewoi jfoie wjoif oiew jio qwhfioewhf ewhf eowifi ehw iofh ewoif oeh woif ioewh oif oiewh fioehiwoh fioeh wifeo w hfioeh wiofhioeh wiofio ew h</p>
+              <div class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="empty-star"></div>
+              </div>
+          </div>
+      </li>
+      <li>
+         <div class="featured-img">
+            <div class="pic"></div>
+          </div>
+          <div class="featured-desc">
+              <h3>Wallet</h3> <span>by Maxime Dantec</span>
+              <p>eiwdjeiw deow jdioe wjdioe jwiodj </p>
+              <div class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="empty-star"></div>
+                  <div class="empty-star"></div>
+              </div>
+          </div>
+      </li>
+  </ul>
+
+
+  <div class="experiments-title"> All experiments </div>
+  <table class="experiments">
+      <tr>
+          <td class="author">
+              <div class="avatar">
+                  <img src="assets/images/avatar.png" alt="efefeefee">
+              </div>
+              <span class="title"> Wallet </span>
+              <span class="coder"> Maxime Dantec</span>
+          </td>
+          <td class="desc">La description du projet et c'est super </td>
+          <td class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="empty-star"></div>
+                  <div class="empty-star"></div>
+          </td>
+      </tr>
+      <tr>
+          <td class="author">
+              <div class="avatar">
+                  <img src="assets/images/avatar.png" alt="efefeefee">
+              </div>
+              <span class="title"> Wallet </span>
+              <span class="coder"> Maxime Dantec</span>
+          </td>
+          <td class="desc">La description du projet et c'est super </td>
+          <td class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="empty-star"></div>
+                  <div class="empty-star"></div>
+          </td>
+      </tr>
+      <tr>
+          <td class="author">
+              <div class="avatar">
+                  <img src="assets/images/avatar.png" alt="efefeefee">
+              </div>
+              <span class="title"> Wallet </span>
+              <span class="coder"> Maxime Dantec</span>
+          </td>
+          <td class="desc">La description du projet et c'est super </td>
+          <td class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="empty-star"></div>
+                  <div class="empty-star"></div>
+          </td>
+      </tr>
+  </table>
+
   <ul>
     @projects.map{ p =>
       <li>@p</li>
