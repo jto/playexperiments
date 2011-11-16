@@ -116,14 +116,14 @@ body {
     margin-left:14px;
     width:100%;
     text-align:center;
-    min-height:400px;
+    min-height:300px;
 }
 
 .featured li {
     float:left;
     width:320px;
-    margin:0 5px 0 5px;
-    height:300px;
+    margin:0 5px 10px 5px;
+    min-height: 300px;
 }
 
 .featured .featured-img {
@@ -210,6 +210,7 @@ table.experiments td.author {
 }
 
 .experiments-title {
+    clear:both;
     width:963px;
     height:30px;
     margin:30px auto 0;
@@ -262,4 +263,81 @@ table.experiments td.desc {
 
 table.experiments td.stars {
     padding-top:11px;
+}
+
+.active {
+    color:#6fbae7;
+}
+
+.text {
+    padding: 10px 20px;
+    color:#647485;
+}
+
+fieldset {
+    float:left;
+    width:500px;
+    box-sizing:border-box;
+    height:400px;
+    padding:20px;
+}
+
+.help {
+    display:none;
+}
+
+form {
+    height:100%;
+    height:400px;
+    margin:20px 0 20px 0;
+    border-top: 1px solid #d6dbe4;
+    border-bottom: 1px solid #d6dbe4;
+}
+
+form dt {
+    color:#647485;
+}
+
+input {
+    margin:10px 0;
+    width:100%;
+    height:30px;
+    background:#f7f9fa;
+    color:#b5bdc5;
+    box-sizing:border-box;
+    font-size:14px;
+    padding:2px 4px;
+    border-radius:5px;
+    border:none;
+    -webkit-box-shadow:inset 0px 2px 1px rgba(61,70,123,.2);
+}
+
+input:focus {
+    border:2px solid #bfe6fc;
+}
+
+input[name="project.description"] {
+    height:130px;
+}
+
+form input[type='submit'] {
+    float:right;
+    text-decoration:none;
+    box-sizing:border-box;
+    right:18px;
+    background-color:red;
+    border:none;
+    background:url(../images/submit-button.png) 0px 0px no-repeat;
+    width:207px;
+    height:59px;
+    top:30px;
+    color:#0e78b7;
+    text-align:center;
+    padding:1px 3px 0 42px;
+    font-size:15px;
+    text-shadow: 0 1px 2px rgba(255,255,255, 0.5);
+}
+
+fieldset:first-child {
+    border-right: 1px solid #d6dbe4;
 }
