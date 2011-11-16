@@ -1,7 +1,21 @@
-@(message: String)
+@(projects: Seq[models.Project])
 
-@main("Welcome to Play 2.0 beta") {
-    
-    @play20.welcome(message)
-    
+@import helper._
+@import controllers.Forms._
+
+@main("Welcome to PlayExperiments") {
+  <ul>
+    @projects.map{ p =>
+      <li>@p</li>
+    }
+  </ul>
+  <h2>Create</h2>
+  @form(routes.Application.saveProject) {
+    <fieldset>
+      @inputText(projectForm("project.name"), 'label -> "Experiment name")(exinput)
+      @inputText(projectForm("project.description"), 'label -> "description")(exinput)
+      @inputText(projectForm("project.repo"), 'label -> "repository")(exinput)
+    </fieldset>
+    <input type="submit" value="Submit this experiment">
+  }
 }

@@ -11,7 +11,9 @@ create table user (
 create table project (
   id                        bigint not null primary key,
   name                      varchar(255) not null,
-  description               varchar(255) not null
+  description               varchar(255) not null,
+  repo                      varchar(255) not null,
+  score                     int not null
 );
 
 create sequence project_seq start with 1000;

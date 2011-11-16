@@ -6,7 +6,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Project(id: Pk[Long], description: String, name: String)
+case class Project(id: Pk[Long], name: String, description: String, repo: String, score: Int = 0)
 
 object Project {
 
@@ -18,12 +18,23 @@ object Project {
   val simple = {
     get[Pk[Long]]("project.id") ~/
     get[String]("project.description") ~/
-    get[String]("project.name") ^^ {
-      case id~description~name => Project(id, description, name)
+    get[String]("project.name") ~/
+    get[Int]("project.score") ~/
+    get[String]("project.repo") ^^ {
+      case id~description~name~score~repo => Project(id, name, description, repo, score)
     }
   }
 
   // -- Queries
+
+  /**
+   * Find all projects
+   */
+  def findAll: Seq[Project] = {
+    DB.withConnection { implicit connection =>
+      SQL("select * from project order by score desc").as(Project.simple *)
+    }
+  }
 
   /**
    * Retrieve a Project from id.
@@ -62,17 +73,30 @@ object Project {
        SQL(
          """
            insert into project values (
-             {id}, {name}, {description}
+             {id}, {name}, {description}, {repo}, {score}
            )
          """
        ).on(
          'id -> id,
          'name -> project.name,
-         'description -> project.description
+         'description -> project.description,
+         'repo -> project.repo,
+         'score -> project.score
        ).executeUpdate()
 
        project.copy(id = Id(id))
 
      }
+  }
+
+  /**
+   * Upvote a project.
+   */
+  def upvote(id: Long) {
+    DB.withConnection { implicit connection =>
+      SQL("update project set score = (score + 1) where id = {id}").on(
+        'id -> id
+      ).executeUpdate()
+    }
   }
 }

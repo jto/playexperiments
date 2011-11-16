@@ -9,9 +9,7 @@ import anorm._
 
 import models._
 
-object Application extends Controller {
-
-
+object Forms{
   val userForm = Form(
     of(
       "user.email" -> requiredText,
@@ -24,25 +22,40 @@ object Application extends Controller {
     of(
       "project.id" -> ignored(NotAssigned),
       "project.name" -> requiredText,
-      "project.description" -> requiredText
+      "project.description" -> requiredText,
+      "project.repo" -> requiredText
     )
   )
+}
+
+object Application extends Controller {
+
+  import Forms._
+
+  val Home = Redirect(routes.Application.index)
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.index(Project.findAll))
   }
 
   def saveProject = Action{ implicit request =>
     projectForm.bindFromRequest.fold(
       errors => BadRequest,
       {
-        case (id, description, name) =>
-          val p = Project.create(Project(id, name, description))
-          Ok(p.toString)
+        case (id, description, name, repo) =>
+          val p = Project.create(Project(id, name, description, repo))
+          Home.flashing("success" -> "Experiment %s has been updated".format(p.name))
       }
     )
   }
 
+  def upvote(id: Long) = Action{
+    Project.upvote(id)
+    Ok("Upvoted :)")
+  }
+
+
+/*
   def saveUser = Action{ implicit request =>
     userForm.bindFromRequest.fold(
       errors => BadRequest,
@@ -53,4 +66,5 @@ object Application extends Controller {
       }
     )
   }
+*/
 }
