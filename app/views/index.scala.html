@@ -60,62 +60,25 @@
 
   <div class="experiments-title"> All experiments </div>
   <table class="experiments">
-      <tr>
-          <td class="author">
-              <div class="avatar">
-                  <img src="assets/images/avatar.png" alt="efefeefee">
-              </div>
-              <span class="title"> Wallet </span>
-              <span class="coder"> Maxime Dantec</span>
-          </td>
-          <td class="desc">La description du projet et c'est super </td>
-          <td class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="empty-star"></div>
-                  <div class="empty-star"></div>
-          </td>
-      </tr>
-      <tr>
-          <td class="author">
-              <div class="avatar">
-                  <img src="assets/images/avatar.png" alt="efefeefee">
-              </div>
-              <span class="title"> Wallet </span>
-              <span class="coder"> Maxime Dantec</span>
-          </td>
-          <td class="desc">La description du projet et c'est super </td>
-          <td class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="empty-star"></div>
-                  <div class="empty-star"></div>
-          </td>
-      </tr>
-      <tr>
-          <td class="author">
-              <div class="avatar">
-                  <img src="assets/images/avatar.png" alt="efefeefee">
-              </div>
-              <span class="title"> Wallet </span>
-              <span class="coder"> Maxime Dantec</span>
-          </td>
-          <td class="desc">La description du projet et c'est super </td>
-          <td class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="empty-star"></div>
-                  <div class="empty-star"></div>
-          </td>
-      </tr>
-  </table>
-
-  <ul>
     @projects.map{ p =>
-      <li>@p</li>
+      <tr>
+          <td class="author">
+              <div class="avatar">
+                  <img src="assets/images/avatar.png" alt="efefeefee">
+              </div>
+              <span class="title"> @p.name </span>
+              <span class="coder"> @p.author </span>
+          </td>
+          <td class="desc"> @p.description </td>
+          <td class="stars">
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="full-star"></div>
+                  <div class="empty-star"></div>
+                  <div class="empty-star"></div>
+          </td>
+      </tr>
     }
-  </ul>
+  </table>
+  
 }
