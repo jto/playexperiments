@@ -14,7 +14,8 @@ create table project (
   description               varchar(255) not null,
   repo                      varchar(255) not null,
   score                     int not null,
-  validated                 boolean not null
+  validated                 boolean not null,
+  image                     varchar(255) not null,
 );
 
 create sequence project_seq start with 1000;

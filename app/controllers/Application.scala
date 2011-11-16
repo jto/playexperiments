@@ -10,15 +10,6 @@ import anorm._
 import models._
 
 object Forms{
-  /*
-  val userForm = Form(
-    of(
-      "user.email" -> requiredText,
-      "user.name" -> requiredText,
-      "user.password" -> requiredText
-    )
-  )
-  */
 
   val projectForm = Form(
     of(Project.apply _)(
@@ -27,7 +18,8 @@ object Forms{
       "project.description" -> requiredText,
       "project.repo" -> requiredText,
       "project.score" -> ignored(0),
-      "project.validated" -> ignored(false)
+      "project.validated" -> ignored(false),
+      "project.image" -> text
     )
   )
 }
@@ -77,17 +69,4 @@ object Application extends Controller {
     Ok("Upvoted :)")
   }
 
-
-/*
-  def saveUser = Action{ implicit request =>
-    userForm.bindFromRequest.fold(
-      errors => BadRequest,
-      {
-        case (email, name, password) =>
-          User.create(User(email, name, password))
-          Ok(email + " " + name + " " + password)
-      }
-    )
-  }
-*/
 }
