@@ -1,5 +1,5 @@
 body {
-    background: #e4e8ee; /* Old browsers */
+    background: #e4e8ee; 
     background: -moz-linear-gradient(top, #e4e8ee 0%, #ffffff 54%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4e8ee), color-stop(54%,#ffffff));
     background: -webkit-linear-gradient(top, #e4e8ee 0%,#ffffff 54%);
@@ -13,7 +13,7 @@ body {
 .container {
     width:1020px;
     margin:auto;
-    -webkit-box-shadow:1px 0 2px rgba(61,70,123,.2), -1px 0 2px rgba(61,70,123,.2);
+    -webkit-box-shadow:1px 0 3px rgba(61,70,123,.2), -1px 0 3px rgba(61,70,123,.2);
     border-top-left-radius:5px;
     border-top-right-radius:5px;
 }
@@ -65,23 +65,25 @@ body {
     padding-bottom:30px;
 }
 
-.header button {
+.header .button {
     position:absolute;
-    right:15px;
+    text-decoration:none;
+    box-sizing:border-box;
+    right:18px;
     background-color:red;
     border:none;
-    background:url(../images/submit-button.png);
+    background:url(../images/submit-button.png) 0px 0px no-repeat;
     width:207px;
     height:59px;
     top:30px;
     color:#0e78b7;
-    text-align:right;
-    padding-right:19px;
-    font-size:14px;
+    text-align:center;
+    padding:21px 3px 0 42px;
+    font-size:18px;
     text-shadow: 0 1px 2px rgba(255,255,255, 0.5);
 }
 
-.header button:hover {
+.header .button:hover {
     cursor:pointer;
 }
 
@@ -105,7 +107,7 @@ body {
 }
 
 .content h2 {
-    margin:20px 0 20px 18px;
+    margin:25px 0 20px 18px;
     color:#647485;
     font-size:18px;
 }
@@ -250,4 +252,14 @@ table.experiments .author .coder {
     font-style:italic;
     font-size:12px;
     color:#C4C8D6;
+}
+
+table.experiments td.desc {
+    padding-left:10px;
+    padding-top:11px;
+    color:#647485;
+}
+
+table.experiments td.stars {
+    padding-top:11px;
 }

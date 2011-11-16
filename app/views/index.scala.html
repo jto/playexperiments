@@ -7,56 +7,25 @@
   <h2>Featured experiments</h2>
 
   <ul class="featured">
-      <li>
-          <div class="featured-img">
-            <div class="pic"></div>
-          </div>
-          <div class="featured-desc">
-              <h3>Wallet</h3> <span>by Maxime Dantec</span>
-              <p>eiwdjeiw deow jdioe wjdioe jwiodj eiow jife ijf ewjfo eiow jfoewoi jfoie wjoif oiew jio</p>
-              <div class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
+      @projects.take(3).map{ p =>
+          <li>
+              <div class="featured-img">
+                <div class="pic"></div>
               </div>
-          </div>
-      </li>
-      <li>
-          <div class="featured-img">
-            <div class="pic"></div>
-          </div>
-          <div class="featured-desc">
-              <h3>Wallet</h3> <span>by Maxime Dantec</span>
-              <p>eiwdjeiw deow jdioe wjdioe jwiodj eiow jife ijf ewjfo eiow jfoewoi jfoie wjoif oiew jio qwhfioewhf ewhf eowifi ehw iofh ewoif oeh woif ioewh oif oiewh fioehiwoh fioeh wifeo w hfioeh wiofhioeh wiofio ew h</p>
-              <div class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="empty-star"></div>
+              <div class="featured-desc">
+                  <h3>@p.name</h3> <span>by @p.author</span>
+                  <p>@p.description</p>
+                  <div class="stars">
+                      <div class="full-star"></div>
+                      <div class="full-star"></div>
+                      <div class="full-star"></div>
+                      <div class="full-star"></div>
+                      <div class="full-star"></div>
+                  </div>
               </div>
-          </div>
-      </li>
-      <li>
-         <div class="featured-img">
-            <div class="pic"></div>
-          </div>
-          <div class="featured-desc">
-              <h3>Wallet</h3> <span>by Maxime Dantec</span>
-              <p>eiwdjeiw deow jdioe wjdioe jwiodj </p>
-              <div class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="empty-star"></div>
-                  <div class="empty-star"></div>
-              </div>
-          </div>
-      </li>
+          </li>
+      }
   </ul>
-
 
   <div class="experiments-title"> All experiments </div>
   <table class="experiments">
@@ -69,16 +38,15 @@
               <span class="title"> @p.name </span>
               <span class="coder"> @p.author </span>
           </td>
-          <td class="desc"> @p.description </td>
+          <td class="desc"> @p.description.take(80) </td>
           <td class="stars">
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="full-star"></div>
-                  <div class="empty-star"></div>
-                  <div class="empty-star"></div>
+              <div class="full-star"></div>
+              <div class="full-star"></div>
+              <div class="full-star"></div>
+              <div class="empty-star"></div>
+              <div class="empty-star"></div>
           </td>
       </tr>
     }
   </table>
-  
 }
