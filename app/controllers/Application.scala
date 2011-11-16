@@ -19,7 +19,8 @@ object Forms{
       "project.repo" -> requiredText,
       "project.score" -> ignored(0),
       "project.validated" -> ignored(false),
-      "project.image" -> text
+      "project.image" -> text,
+      "project.author" -> requiredText
     )
   )
 }

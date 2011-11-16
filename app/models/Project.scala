@@ -6,7 +6,14 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Project(id: Pk[Long], name: String, description: String, repo: String, score: Int = 0, validated: Boolean = false, image: String)
+case class Project(id: Pk[Long],
+  name: String,
+  description: String,
+  repo: String,
+  score: Int = 0,
+  validated: Boolean = false,
+  image: String,
+  author: String)
 
 object Project {
 
@@ -22,8 +29,9 @@ object Project {
     get[Int]("project.score") ~/
     get[Boolean]("project.validated") ~/
     get[String]("project.image") ~/
+    get[String]("project.author") ~/
     get[String]("project.repo") ^^ {
-      case id~description~name~score~validated~image~repo => Project(id, name, description, repo, score, validated, image)
+      case id~description~name~score~validated~image~author~repo => Project(id, name, description, repo, score, validated, image, author)
     }
   }
 
@@ -81,7 +89,7 @@ object Project {
        SQL(
          """
            insert into project values (
-             {id}, {name}, {description}, {repo}, {score}, {validated}, {image}
+             {id}, {name}, {description}, {repo}, {score}, {validated}, {image}, {author}
            )
          """
        ).on(
@@ -91,7 +99,8 @@ object Project {
          'repo -> project.repo,
          'score -> project.score,
          'validated -> project.validated,
-         'image -> project.image
+         'image -> project.image,
+         'author -> project.author
        ).executeUpdate()
 
        project.copy(id = Id(id))

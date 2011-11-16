@@ -16,6 +16,7 @@ create table project (
   score                     int not null,
   validated                 boolean not null,
   image                     varchar(255) not null,
+  author                    varchar(255) not null,
 );
 
 create sequence project_seq start with 1000;
