@@ -14,7 +14,7 @@ create table author (
 create table project (
   id                        bigint not null primary key AUTO_INCREMENT,
   name                      varchar(255) not null,
-  description               varchar(255) not null,
+  description               varchar(5000) not null,
   repo                      varchar(255) not null,
   score                     int not null,
   validated                 boolean not null,

@@ -20,7 +20,7 @@ object Forms{
       "project.score" -> ignored(0),
       "project.validated" -> ignored(false),
       "project.image" -> text,
-      "author.email" -> text,
+      "author.email" -> email,
       "project.url" -> optional(text)
     )
   )
@@ -61,7 +61,7 @@ object Application extends Controller {
       {
         case auth: Author => {
           projectForm.bindFromRequest.fold(
-            errors => BadRequest,
+            errors => BadRequest(views.html.submitProject(errors)),
             {
               case project: Project =>
                 // It's unlikely to fail, but still, should be transactionnal

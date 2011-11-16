@@ -1,5 +1,8 @@
 @(e: helper.InputElements)
 <dl>
   <dt><label>@e.label</label></dt>
-  <dd>@e.input</dd>
+  <dd>
+    @e.input
+    <span class="help">@e.infos</span>
+  </dd>
 </dl>
