@@ -20,7 +20,8 @@ object Forms{
       "project.score" -> ignored(0),
       "project.validated" -> ignored(false),
       "project.image" -> text,
-      "author.email" -> text
+      "author.email" -> text,
+      "project.url" -> optional(text)
     )
   )
 

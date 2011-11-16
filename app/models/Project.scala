@@ -13,7 +13,8 @@ case class Project(id: Pk[Long],
   score: Int = 0,
   validated: Boolean = false,
   image: String,
-  author: String)
+  author: String,
+  url: Option[String])
 
 object Project {
 
@@ -30,8 +31,9 @@ object Project {
     get[Boolean]("project.validated") ~/
     get[String]("project.image") ~/
     get[String]("project.author_email") ~/
+    get[Option[String]]("project.url") ~/
     get[String]("project.repo") ^^ {
-      case id ~ description ~ name ~ score ~ validated ~ image ~ author ~ repo => Project(id, name, description, repo, score, validated, image, author)
+      case id ~ description ~ name ~ score ~ validated ~ image ~ author ~ url ~ repo => Project(id, name, description, repo, score, validated, image, author, url)
     }
   }
 
@@ -89,7 +91,7 @@ object Project {
        SQL(
          """
            insert into project values (
-             {id}, {name}, {description}, {repo}, {score}, {validated}, {image}, {author}
+             {id}, {name}, {description}, {repo}, {score}, {validated}, {image}, {author}, {url}
            )
          """
        ).on(
@@ -100,7 +102,8 @@ object Project {
          'score -> project.score,
          'validated -> project.validated,
          'image -> project.image,
-         'author -> project.author
+         'author -> project.author,
+         'url -> project.url
        ).executeUpdate()
 
        project.copy(id = Id(id))

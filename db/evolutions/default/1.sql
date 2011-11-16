@@ -17,6 +17,7 @@ create table project (
   validated                 boolean not null,
   image                     varchar(255) not null,
   author_email              varchar(255) not null,
+  url                       varchar(255),
   foreign key(author_email) references author(email) on delete cascade
 );
 
