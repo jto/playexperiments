@@ -82,20 +82,14 @@ object Project {
   def create(project: Project): Project = {
      DB.withTransaction { implicit connection =>
 
-       // Get the project id
-       val id: Long = project.id.getOrElse {
-         SQL("select next value for project_seq").as(scalar[Long])
-       }
-
        // Insert the project
        SQL(
          """
            insert into project values (
-             {id}, {name}, {description}, {repo}, {score}, {validated}, {image}, {author}, {url}
+             NULL, {name}, {description}, {repo}, {score}, {validated}, {image}, {author}, {url}
            )
          """
        ).on(
-         'id -> id,
          'name -> project.name,
          'description -> project.description,
          'repo -> project.repo,
@@ -106,7 +100,7 @@ object Project {
          'url -> project.url
        ).executeUpdate()
 
-       project.copy(id = Id(id))
+       project.copy(id = Id(SQL("select LAST_INSERT_ID()").as(scalar[Long])))
 
      }
   }
