@@ -1,5 +1,5 @@
 body {
-    background: #e4e8ee; 
+    background: #e4e8ee;
     background: -moz-linear-gradient(top, #e4e8ee 0%, #ffffff 54%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4e8ee), color-stop(54%,#ffffff));
     background: -webkit-linear-gradient(top, #e4e8ee 0%,#ffffff 54%);
@@ -9,6 +9,8 @@ body {
     height:100%;
     font-family:"Myriad Pro";
 }
+
+a {color: #6FBAE7; text-decoration: none}
 
 .container {
     width:1020px;
@@ -165,7 +167,7 @@ body {
 }
 
 .stars {
-    width:100px;
+    width:105px;
     height:17px;
 }
 
@@ -233,7 +235,7 @@ table.experiments .avatar {
    background:#dadfe8;
    display:inline-block;
    vertical-align: -14px;
-} 
+}
 
 table.experiments .author img {
     width:34px;

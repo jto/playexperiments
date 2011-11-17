@@ -10,10 +10,10 @@
       @projects.take(3).map{ p =>
           <li>
               <div class="featured-img">
-                <div class="pic"></div>
+                <div class="pic"><img src="@p.image" alt="@p.name" /></div>
               </div>
               <div class="featured-desc">
-                  <h3>@p.name</h3> <span>by @p.author</span>
+                  <h3><a href="@p.url">@p.name</a></h3> <span>by @p.author</span>
                   <p>@p.description</p>
                   <div class="stars">
                       <div class="full-star"></div>
@@ -29,13 +29,13 @@
 
   <div class="experiments-title"> All experiments </div>
   <table class="experiments">
-    @projects.map{ p =>
+    @projects.drop(3).map{ p =>
       <tr>
           <td class="author">
               <div class="avatar">
-                  <img src="assets/images/avatar.png" alt="efefeefee">
+                  <img src="@p.image" alt="efefeefee">
               </div>
-              <span class="title"> @p.name </span>
+              <span class="title"><a href="@p.url">@p.name</a></span>
               <span class="coder"> @p.author </span>
           </td>
           <td class="desc"> @p.description.take(80) </td>
