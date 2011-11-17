@@ -19,16 +19,25 @@ create table project (
   score                     int not null,
   validated                 boolean not null,
   image                     varchar(255) not null,
+  url                       varchar(255)
+) engine = innodb character set utf8 collate utf8_general_ci;
+
+create table project_author(
   author_email              varchar(255) not null,
-  url                       varchar(255),
-  foreign key(author_email) references author(email) on delete cascade
+  project_id                bigint not null,
+  foreign key(author_email) references author(email) on delete cascade,
+  foreign key(project_id) references project(id) on delete cascade
 ) engine = innodb character set utf8 collate utf8_general_ci;
 
 # create sequence project_seq start with 1000;
 
+insert into author(email, name, url) values("jto@zenexity.com", "Julien Tournay", "http://github.com/jto");
+insert into project(id, name, description, repo, score, validated, image, url) values(1, "Play!Experiments", "Awesome project from hackday", "http://github.com/jto/playexperiments", 999, true, "", "http://localhost:9000  ");
+insert into project_author(author_email, project_id) values("jto@zenexity.com", 1);
 # --- !Downs
 
-drop database playexperiments;
+# drop database if exists playexperiments;
 drop table if exists project;
 drop table if exists author;
+drop table if exists project_author;
 # drop sequence if exists project_seq;

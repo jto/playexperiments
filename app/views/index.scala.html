@@ -13,7 +13,7 @@
                 <div class="pic"><img src="@p.image" alt="@p.name" /></div>
               </div>
               <div class="featured-desc">
-                  <h3><a href="@p.url">@p.name</a></h3> <span>by @p.author</span>
+                  <h3><a href="@p.url">@p.name</a></h3> <span>by @p.authors.map(_.name).mkString(", ")</span>
                   <p>@p.description</p>
                   <div class="stars">
                       <div class="full-star"></div>
@@ -36,7 +36,7 @@
                   <img src="@p.image" alt="efefeefee">
               </div>
               <span class="title"><a href="@p.url">@p.name</a></span>
-              <span class="coder"> @p.author </span>
+              <span class="coder"> @p.authors.map(_.name).mkString(", ") </span>
           </td>
           <td class="desc"> @p.description.take(80) </td>
           <td class="stars">

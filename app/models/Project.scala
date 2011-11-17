@@ -13,7 +13,7 @@ case class Project(id: Pk[Long],
   score: Int = 0,
   validated: Boolean = false,
   image: String,
-  author: String,
+  authors: List[Author],
   url: Option[String])
 
 object Project {
@@ -30,10 +30,11 @@ object Project {
     get[Int]("project.score") ~/
     get[Boolean]("project.validated") ~/
     get[String]("project.image") ~/
-    get[String]("project.author_email") ~/
     get[Option[String]]("project.url") ~/
-    get[String]("project.repo") ^^ {
-      case id ~ description ~ name ~ score ~ validated ~ image ~ author ~ url ~ repo => Project(id, name, description, repo, score, validated, image, author, url)
+    get[String]("project.repo") ~/
+    spanM(by=long("id"), Author.simple) ^^ {
+      case id ~ description ~ name ~ score ~ validated ~ image ~ url ~ repo ~ authors
+        => Project(id, name, description, repo, score, validated, image, authors, url)
     }
   }
 
@@ -44,13 +45,24 @@ object Project {
    */
   def findAll: Seq[Project] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from project order by score desc").as(Project.simple *)
+      SQL("""
+        select * from project
+        inner join project_author on project_author.project_id = project.id
+        inner join  author on project_author.author_email = author.email
+        order by score desc
+      """).as(Project.simple *)
     }
   }
 
   def findValidated: Seq[Project] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from project where validated = true order by score desc").as(Project.simple *)
+      SQL("""
+        select * from project
+        inner join project_author on project_author.project_id = project.id
+        inner join  author on project_author.author_email = author.email
+        where validated = true
+        order by score desc
+      """).as(Project.simple *)
     }
   }
 
@@ -59,7 +71,12 @@ object Project {
    */
   def findById(id: Long): Option[Project] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from project where validated = true and id = {id}").on(
+      SQL("""
+        select * from project
+        inner join project_author on project_author.project_id = project.id
+        inner join  author on project_author.author_email = author.email
+        where validated = true and id = {id}
+      """).on(
         'id -> id
       ).as(Project.simple ?)
     }
@@ -81,12 +98,12 @@ object Project {
    */
   def create(project: Project): Project = {
      DB.withTransaction { implicit connection =>
-
+       // TODO: insert authors
        // Insert the project
        SQL(
          """
            insert into project values (
-             NULL, {name}, {description}, {repo}, {score}, {validated}, {image}, {author}, {url}
+             NULL, {name}, {description}, {repo}, {score}, {validated}, {image}, {url}
            )
          """
        ).on(
@@ -96,7 +113,6 @@ object Project {
          'score -> project.score,
          'validated -> project.validated,
          'image -> project.image,
-         'author -> project.author,
          'url -> project.url
        ).executeUpdate()
 
