@@ -21,7 +21,12 @@
     <fieldset>
       @inputText(pf("project.image"), 'label -> "image")(exinput)
       @inputText(pf("project.url"), 'label -> "project host")(exinput)
-      @inputText(pf("project.description"), 'label -> "description")(exinput)
+      <dl>
+          <dt><label for='@pf("project.description").id'>Description</label></dt>
+        <dd>
+            <textarea id='@pf("project.description").id' name='@pf("project.description").name'></textarea>
+        </dd>
+      </dl>
       <input type="submit" value="Submit experiment">
     </fieldset>
   }
