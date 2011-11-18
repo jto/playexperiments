@@ -45,6 +45,12 @@ object Application extends Controller {
     Ok(views.html.index(Project.findValidated))
   }
 
+  def get(id: Long) = Action {
+    Project.findById(id)
+           .map(p => Ok(views.html.experiment(p)))
+           .getOrElse(NotFound)
+  }
+
   def all = Action {
     Ok(views.html.index(Project.findAll))
   }

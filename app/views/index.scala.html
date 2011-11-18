@@ -29,13 +29,13 @@
 
   <div class="experiments-title"> All experiments </div>
   <table class="experiments">
-    @projects.drop(3).map{ p =>
+    @projects.map{ p =>
       <tr>
           <td class="author">
               <div class="avatar">
                   <img src="@p.image" alt="efefeefee">
               </div>
-              <span class="title"><a href="@p.url">@p.name</a></span>
+              <span class="title"><a href="@routes.Application.get(p.id.get)">@p.name</a></span>
               <span class="coder"> @p.authors.map(_.name).mkString(", ") </span>
           </td>
           <td class="desc"> @p.description.take(80) </td>

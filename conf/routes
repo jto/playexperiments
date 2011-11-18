@@ -10,6 +10,7 @@ POST    /save                       controllers.Application.save()
 GET     /upvote/:id                 controllers.Application.upvote(id: Long)
 GET     /submit                     controllers.Application.submit()
 POST    /validate/:id               controllers.Application.validate(id: Long)
+GET     /experiment/:id             controllers.Application.get(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
