@@ -13,7 +13,7 @@
                 <div class="pic"><img src="@p.image" alt="@p.name" /></div>
               </div>
               <div class="featured-desc">
-                  <h3><a href="@p.url">@p.name</a></h3> <span>by @p.authors.map(_.name).mkString(", ")</span>
+                  <h3><a href="@routes.Application.get(p.id.get)">@p.name</a></h3> <span>by @p.authors.map(_.name).mkString(", ")</span>
                   <p>@p.description</p>
                   <div class="stars">
                       <div class="full-star"></div>

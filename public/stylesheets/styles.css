@@ -89,6 +89,10 @@ a {color: #6FBAE7; text-decoration: none}
     cursor:pointer;
 }
 
+.header a {
+    color:#a1afc0;
+}
+
 #play {
     font-size:33px;
     background:url(../images/play.png) 10px 0 no-repeat;
