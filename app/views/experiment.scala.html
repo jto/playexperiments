@@ -1,8 +1,59 @@
 @(project: models.Project)
 
-@main("Welcome to PlayExperiments") {
-    <h2>Experiments</h2>
-    <ul>
-        <li>@project.name</li>        
-    </ul>
+@main("PlayExperiments: " + project.name + " by " + project.authors.map(_.name).mkString(", ")) {
+    <h2>Home > <span class="active">@project.name</span></h2>
+
+    <div class="column-container">
+        <div class="slideshow">
+            <div class="slideshow-content">
+                <img src="@project.image">
+            </div>
+        </div>
+    </div>
+
+    <div class="column-container">
+        <h2>@project.name</h2>
+        <a href="https://twitter.com/share"
+            class="twitter-share-button" 
+            data-count="horizontal">Tweet</a>
+        <span class="mini">by @project.authors.map(_.name).mkString(", ") - <a href="@project.url">@project.url</a> </span>
+        <p>@project.description</p>
+        <div>
+            <a href="@project.url">View experiment demo</a>
+            <a href="@project.repo">View source code</a>
+        </div>
+        <div class="rating">
+            <span id="rate-btn">Rate experiment (@project.score)</span>
+            <div class="stars">
+              <div class="full-star"></div>
+              <div class="full-star"></div>
+              <div class="full-star"></div>
+              <div class="full-star"></div>
+              <div class="full-star"></div>
+          </div>
+        </div>
+    </div>
+    
+    <div class="comments"></div>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var btn = $("#rate-btn"),
+                count = @project.score;
+
+            btn.click(function () {
+                if(confirm("Do you want to vote for @project.name?")) {
+                    $.ajax({
+                        url:"/upvote/" + @project.id,
+                        success: function () {
+                            btn.text("Rate experiment (" + (++count) + ")");
+                        },
+                        error : function () {
+                            alert('Something when wrong during the vote, please retry!');
+                        }
+                    });
+                }
+            });     
+        });
+    </script>
 }

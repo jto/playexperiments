@@ -6,9 +6,12 @@
 @main("Welcome to PlayExperiments") {
 <h2>Home > <span class="active">Submit experiment</span></h2>
 
-<p class="text">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know</p>
+<p class="text">
+    Submit your project to the Play! Experiments and show to the world how the future looks like!
+    Fill the form and we will and it's done!
 
-<p class="text">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.</p>
+    Follow our twitter account <a href="http://twitter.com/playexperiments">@@playexperiments</a> to be informed when your experiment is online or when it enters the featured experiments.
+</p>
 
   @form(routes.Application.save) {
     <fieldset>
@@ -29,5 +32,11 @@
       </dl>
       <input type="submit" value="Submit experiment">
     </fieldset>
-  }
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a[href='@routes.Application.submit']").hide();
+        });
+    </script>
 }

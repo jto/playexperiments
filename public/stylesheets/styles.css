@@ -1,11 +1,16 @@
+html {
+    width:100%;
+    height:100%;
+}
+
 body {
     background: #e4e8ee;
-    background: -moz-linear-gradient(top, #e4e8ee 0%, #ffffff 54%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4e8ee), color-stop(54%,#ffffff));
-    background: -webkit-linear-gradient(top, #e4e8ee 0%,#ffffff 54%);
-    background: -o-linear-gradient(top, #e4e8ee 0%,#ffffff 54%);
-    background: -ms-linear-gradient(top, #e4e8ee 0%,#ffffff 54%);
-    background: linear-gradient(top, #e4e8ee 0%,#ffffff 54%);
+    background: -moz-linear-gradient(top, #e4e8ee 0%, #ffffff 54%) no-repeat;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4e8ee), color-stop(54%,#ffffff)) no-repeat;
+    background: -webkit-linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
+    background: -o-linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
+    background: -ms-linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
+    background: linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
     height:100%;
     font-family:"Myriad Pro";
 }
@@ -72,7 +77,6 @@ a {color: #6FBAE7; text-decoration: none}
     text-decoration:none;
     box-sizing:border-box;
     right:18px;
-    background-color:red;
     border:none;
     background:url(../images/submit-button.png) 0px 0px no-repeat;
     width:207px;
@@ -83,10 +87,16 @@ a {color: #6FBAE7; text-decoration: none}
     padding:21px 3px 0 42px;
     font-size:18px;
     text-shadow: 0 1px 2px rgba(255,255,255, 0.5);
+    border-radius:12px;
+    -webkit-transition:-webkit-box-shadow 0.1s linear;
 }
 
 .header .button:hover {
     cursor:pointer;
+    -webkit-box-shadow:2px 0 2px rgba(191,230, 252,1),
+         -2px 0 2px rgba(191,230, 252,1),
+         0 2px 2px rgba(191,230, 252,1),
+         0 -2px 2px rgba(191,230, 252,1);
 }
 
 .header a {
@@ -295,7 +305,7 @@ fieldset {
 form {
     height:100%;
     height:400px;
-    margin:20px 0 20px 0;
+    margin:20px 0 0 0;
     border-top: 1px solid #d6dbe4;
     border-bottom: 1px solid #d6dbe4;
 }
@@ -345,8 +355,114 @@ form input[type='submit'] {
     font-size:15px;
     text-shadow: 0 1px 2px rgba(255,255,255, 0.5);
     margin: 0 0 0 20px;
+    -webkit-transition:-webkit-box-shadow 0.1s linear;
+    -webkit-box-shadow::none;
+}
+
+form input[type='submit']:hover {
+    cursor:pointer;
+    -webkit-box-shadow:2px 0 2px rgba(191,230, 252,1),
+         -2px 0 2px rgba(191,230, 252,1),
+         0 2px 2px rgba(191,230, 252,1),
+         0 -2px 2px rgba(191,230, 252,1);
 }
 
 fieldset:first-child {
     border-right: 1px solid #d6dbe4;
+}
+
+.column-container {
+    float:left;
+    width:500px;
+    box-sizing:border-box;
+    min-height:300px;
+    margin:0 0 0 7.5px;
+    padding:10px;
+}
+
+.slideshow {
+    border: 1px solid #d6dbe4;
+    border-radius:5px;
+    width:100%;
+    box-sizing:border-box;
+    height:300px;
+}
+
+.slideshow-content {
+    border:2px solid #fafafa;
+    border-radius:5px;
+    background-color:white;
+    box-sizing:border-box;
+    height:300px;
+    width:100%;
+}
+
+.slideshow .slideshow-top {
+    height:25px;
+    width:100%;
+    box-sizing:border:box;
+    border:1px solid red;
+}
+
+.comments {
+    clear:both;
+}
+
+.column-container {
+    color:#647485;
+    position:relative;
+}
+
+.column-container h2 {
+    margin: 0;
+    color:#6fbae7;
+    border-bottom: 1px solid #d6dbe4;
+}
+
+.column-container p {
+    margin: 20px 0;
+    color:#647485;
+}
+
+.column-container a {
+    text-decoration:underline;
+    margin:5px 10px 5px 0;
+}
+
+.mini {
+    font-size: 12px;
+    font-style: italic;
+    color: #C4C8D6;
+}
+
+.mini a {
+    text-decoration:none;
+    color: #C4C8D6;
+}
+
+.mini a:hover {
+    color:#6fbae7;
+}
+
+.rating {
+    box-sizing:border:box;
+    width:100%;
+    margin: 20px 0 0 0px;
+    background: #F3F5F9;
+    padding: 5px 0 5px 10px;
+}
+
+.rating .stars {
+    display: inline;
+    float: right;
+}
+
+.column-container .twitter-share-button {
+    position:absolute;
+    top:6px;
+    right:-5px;
+}
+
+#rate-btn:hover {
+    cursor:pointer;
 }
