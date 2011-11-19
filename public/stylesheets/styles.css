@@ -11,7 +11,6 @@ body {
     background: -o-linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
     background: -ms-linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
     background: linear-gradient(top, #e4e8ee 0%,#ffffff 54%) no-repeat;
-    height:100%;
     font-family:"Myriad Pro";
 }
 
@@ -465,4 +464,23 @@ fieldset:first-child {
 
 #rate-btn:hover {
     cursor:pointer;
+}
+
+
+.footer {
+    width:1020px;
+    height:10px;
+    margin:-20px auto auto auto;
+    font-size: 12px;
+    font-style: italic;
+    color: #C4C8D6;;
+}
+
+.footer a {
+    text-decoration:none;
+    color: #C4C8D6;
+}
+
+.footer a:hover {
+    color:#6fbae7;
 }
