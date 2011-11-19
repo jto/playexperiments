@@ -15,19 +15,21 @@
 
   @form(routes.Application.save) {
     <fieldset>
-      @inputText(pf("project.name"), 'label -> "Experiment name")(exinput)
-      @inputText(pf("author.name"), 'label -> "author name")(exinput)
-      @inputText(pf("author.email"), 'label -> "author email")(exinput)
-      @inputText(pf("author.url"), 'label -> "author url")(exinput)
-      @inputText(pf("project.repo"), 'label -> "repository")(exinput)
+      @inputText(pf("project.name"), 'label -> "Experiment name", 'placeholder -> "My super project", 'required -> "")(exinput)
+      @inputText(pf("author.name"), 'label -> "author name", 'placeholder -> "Guillaume Bort", 'required -> "")(exinput)
+      @inputText(pf("author.email"), 'label -> "author email", 'placeholder -> "me@me.com", 'required -> "")(exinput)
+      @inputText(pf("author.url"), 'label -> "author url", 'placeholder -> "http://mysite.com", 'required -> "")(exinput)
+      @inputText(pf("project.repo"), 'label -> "repository", 'placeholder -> "http://github.com/test/toto", 'required -> "")(exinput)
     </fieldset>
     <fieldset>
-      @inputText(pf("project.image"), 'label -> "image")(exinput)
-      @inputText(pf("project.url"), 'label -> "project host")(exinput)
+      @inputText(pf("project.image"), 'label -> "image", 'placeholder -> "http://mysite.com/images/test.png", 'required -> "")(exinput)
+      @inputText(pf("project.url"), 'label -> "project host", 'placeholder -> "http://mysite.com/demo", 'required -> "")(exinput)
       <dl>
           <dt><label for='@pf("project.description").id'>Description</label></dt>
         <dd>
-            <textarea id='@pf("project.description").id' name='@pf("project.description").name'></textarea>
+            <textarea id='@pf("project.description").id' 
+                name='@pf("project.description").name' 
+                placeholder="my super project is about..."></textarea>
         </dd>
       </dl>
       <input type="submit" value="Submit experiment">
