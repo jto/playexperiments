@@ -1,3 +1,8 @@
 #!/bin/sh
 
-curl -X "POST" -d "secret=$1" -D- http://127.0.0.1:9000/validate/$2
+if [ $# -lt 3 ]
+then
+    echo "Usage: ./validate host id secret"
+else 
+    curl -X "POST" -d "secret=$3" -D- http://$1/validate/$2
+fi
