@@ -98,8 +98,8 @@ object Project {
    */
   def create(project: Project): Project = {
      DB.withTransaction { implicit connection =>
-       // TODO: insert authors
-       // Insert the project
+       
+       project.authors.foreach(Author.create(_))
        SQL(
          """
            insert into project values (
@@ -115,19 +115,34 @@ object Project {
          'image -> project.image,
          'url -> project.url
        ).executeUpdate()
-
-       project.copy(id = Id(SQL("select LAST_INSERT_ID()").as(scalar[Long])))
-
+       
+       val p = project.copy(id = Id(SQL("select LAST_INSERT_ID()").as(scalar[Long])))
+       
+       project.authors.foreach{ a =>
+         SQL("""
+           insert into project_author(author_email, project_id) values({email}, {pid})
+          """).on(
+             'email -> a.email,
+             'pid -> p.id
+           ).executeUpdate()
+       }
+       p
      }
   }
 
   /**
    * Upvote a project.
    */
-  def upvote(id: Long) {
+  def vote(id: Long, score: Long) {
     DB.withConnection { implicit connection =>
-      SQL("update project set score = (score + 1) where id = {id}").on(
-        'id -> id
+      SQL("""
+          update project set
+          score = (score * votecount + {s}) / (votecount + 1),
+          votecount = (votecount + 1) 
+          where id = {id}
+        """).on(
+        'id -> id,
+        's -> score
       ).executeUpdate()
     }
   }

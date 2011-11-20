@@ -56,7 +56,6 @@ object Application extends Controller {
   }
 
   def submit = Action {
-    // TODO
     Ok(views.html.submitProject(projectForm))
   }
 
@@ -69,10 +68,8 @@ object Application extends Controller {
           projectForm.bindFromRequest.fold(
             errors => BadRequest(views.html.submitProject(errors)),
             {
-              case project: Project =>
-                // It's unlikely to fail, but still, should be transactionnal
-                val a = Author.create(auth)
-                val p = Project.create(project)
+                case project: Project =>
+                val p = Project.create(project.copy(authors = List(auth)))
                 Home.flashing("success" -> "Experiment %s has been updated".format(p.name))
             }
           )
@@ -92,9 +89,14 @@ object Application extends Controller {
     }.getOrElse(NotFound)
   }
 
-  def upvote(id: Long) = Action{
-    Project.upvote(id)
-    Ok("Upvoted :)")
+  def vote(id: Long) = Action{ implicit request =>
+    Form("score" -> number(0, 5)).bindFromRequest.fold(
+      errors => BadRequest,
+      score => {
+        Project.vote(id, score)
+        Ok("Upvoted :)")
+      }
+    )
   }
 
 }

@@ -3,6 +3,16 @@
 @import helper._
 @import controllers.Forms._
 
+@stars(score: Int) = {
+  @for(i <- 1 to score){
+    <div class="full-star"></div>
+  }
+  @for(i <- 1 to (5 - score)){
+    <div class="empty-star"></div>
+  }
+}
+
+
 @main("Welcome to PlayExperiments") {
   <h2>Featured experiments</h2>
 
@@ -20,11 +30,7 @@
                   <h3><a href="@routes.Application.get(p.id.get)">@p.name</a></h3> <span>by @p.authors.map(_.name).mkString(", ")</span>
                   <p>@p.description</p>
                   <div class="stars">
-                      <div class="full-star"></div>
-                      <div class="full-star"></div>
-                      <div class="full-star"></div>
-                      <div class="full-star"></div>
-                      <div class="full-star"></div>
+                      @stars(p.score)
                   </div>
               </div>
           </li>
@@ -44,11 +50,7 @@
           </td>
           <td class="desc"> @p.description.take(80) </td>
           <td class="stars">
-              <div class="full-star"></div>
-              <div class="full-star"></div>
-              <div class="full-star"></div>
-              <div class="empty-star"></div>
-              <div class="empty-star"></div>
+              @stars(p.score)
           </td>
       </tr>
     }
