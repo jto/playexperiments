@@ -20,6 +20,7 @@ a {color: #6FBAE7; text-decoration: none}
     width:1020px;
     margin:auto;
     -webkit-box-shadow:1px 0 3px rgba(61,70,123,.2), -1px 0 3px rgba(61,70,123,.2);
+    -moz-box-shadow:1px 0 3px rgba(61,70,123,.2), -1px 0 3px rgba(61,70,123,.2);
     border-top-left-radius:5px;
     border-top-right-radius:5px;
 }
@@ -75,6 +76,7 @@ a {color: #6FBAE7; text-decoration: none}
     position:absolute;
     text-decoration:none;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     right:18px;
     border:none;
@@ -89,11 +91,16 @@ a {color: #6FBAE7; text-decoration: none}
     text-shadow: 0 1px 2px rgba(255,255,255, 0.5);
     border-radius:12px;
     -webkit-transition:-webkit-box-shadow 0.1s linear;
+    -moz-transition:-webkit-box-shadow 0.1s linear;
 }
 
 .header .button:hover {
     cursor:pointer;
     -webkit-box-shadow:2px 0 2px rgba(191,230, 252,1),
+         -2px 0 2px rgba(191,230, 252,1),
+         0 2px 2px rgba(191,230, 252,1),
+         0 -2px 2px rgba(191,230, 252,1);
+    -moz-box-shadow:2px 0 2px rgba(191,230, 252,1),
          -2px 0 2px rgba(191,230, 252,1),
          0 2px 2px rgba(191,230, 252,1),
          0 -2px 2px rgba(191,230, 252,1);
@@ -224,6 +231,7 @@ table.experiments {
     border-radius:5px;
     border: 1px solid #d6dbe4;
     -webkit-box-shadow:0px 1px 3px rgba(61,70,123,.2);
+    -moz-box-shadow:0px 1px 3px rgba(61,70,123,.2);
 }
 
 table.experiments td {
@@ -317,6 +325,7 @@ fieldset {
     float:left;
     width:500px;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     height:400px;
     padding:20px;
@@ -347,16 +356,23 @@ input, textarea{
     background:#f7f9fa;
     color:#647485;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     font-size:14px;
     padding:2px 4px;
     border-radius:5px;
     border:3px solid white;
     -webkit-box-shadow:inset 0px 2px 1px rgba(61,70,123,.2);
+    -moz-box-shadow:inset 0px 2px 1px rgba(61,70,123,.2);
 }
 
 input:focus, textarea:focus {
     -webkit-box-shadow:inset 0px 2px 1px rgba(61,70,123,.2),
+         2px 0 4px rgba(191,230, 252,1),
+         -2px 0 4px rgba(191,230, 252,1),
+         0 2px 4px rgba(191,230, 252,1),
+         0 -2px 4px rgba(191,230, 252,1);
+    -moz-box-shadow:inset 0px 2px 1px rgba(61,70,123,.2),
          2px 0 4px rgba(191,230, 252,1),
          -2px 0 4px rgba(191,230, 252,1),
          0 2px 4px rgba(191,230, 252,1),
@@ -372,6 +388,7 @@ form input[type='submit'] {
     float:right;
     text-decoration:none;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     border:none;
     background:url(../images/submit-button.png) 0px 0px no-repeat;
@@ -384,12 +401,18 @@ form input[type='submit'] {
     text-shadow: 0 1px 2px rgba(255,255,255, 0.5);
     margin: 0 0 0 20px;
     -webkit-transition:-webkit-box-shadow 0.1s linear;
+    -moz-transition:-webkit-box-shadow 0.1s linear;
     -webkit-box-shadow::none;
+    -moz-box-shadow::none;
 }
 
 form input[type='submit']:hover {
     cursor:pointer;
     -webkit-box-shadow:2px 0 2px rgba(191,230, 252,1),
+         -2px 0 2px rgba(191,230, 252,1),
+         0 2px 2px rgba(191,230, 252,1),
+         0 -2px 2px rgba(191,230, 252,1);
+    -moz-box-shadow:2px 0 2px rgba(191,230, 252,1),
          -2px 0 2px rgba(191,230, 252,1),
          0 2px 2px rgba(191,230, 252,1),
          0 -2px 2px rgba(191,230, 252,1);
@@ -403,6 +426,7 @@ fieldset:first-child {
     float:left;
     width:500px;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     min-height:300px;
     margin:0 0 0 7.5px;
@@ -414,6 +438,7 @@ fieldset:first-child {
     border-radius:5px;
     width:100%;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     height:306px;
 }
@@ -423,6 +448,7 @@ fieldset:first-child {
     border-radius:5px;
     background-color:white;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border-box;
     height:304px;
     width:100%;
@@ -438,6 +464,7 @@ fieldset:first-child {
     height:25px;
     width:100%;
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border:box;
     border:1px solid red;
 }
@@ -484,6 +511,7 @@ fieldset:first-child {
 
 .rating {
     -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
     box-sizing:border:box;
     width:100%;
     margin: 20px 0 0 0px;
