@@ -35,7 +35,7 @@ create table project_author(
 insert into author(email, name, url) values("jto@zenexity.com", "Julien Tournay", "http://github.com/jto");
 insert into author(email, name, url) values("ppa@zenexity.com", "Paul Panserieu", "http://42loops.com/");
 insert into author(email, name, url) values("aau@zenexity.com", "Anthony Aubertin", "http://www.noxdzine.fr/");
-insert into project(id, name, description, repo, score, votecount, validated, image, url) values(1, "Play!Experiments", "Awesome project from hackday", "http://github.com/jto/playexperiments", 5, 1, true, "", "http://localhost:9000  ");
+insert into project(id, name, description, repo, score, votecount, validated, image, url) values(1, "Play!Experiments", "Awesome project from hackday", "http://github.com/jto/playexperiments", 5, 1, true, "/assets/images/playexperiments.png", "http://playexperiments.com");
 insert into project_author(author_email, project_id) values("jto@zenexity.com", 1);
 insert into project_author(author_email, project_id) values("ppa@zenexity.com", 1);
 insert into project_author(author_email, project_id) values("aau@zenexity.com", 1);
