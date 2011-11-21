@@ -50,9 +50,10 @@ object Author {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          insert into author values (
-            {email}, {name}, {url}
-          )
+          insert ignore into author set
+            email = {email},
+            name = {name},
+            url = {url}
         """
       ).on(
         'email -> author.email,
