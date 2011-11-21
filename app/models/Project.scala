@@ -103,7 +103,7 @@ object Project {
        SQL(
          """
            insert into project values (
-             NULL, {name}, {description}, {repo}, {score}, {validated}, {image}, {url}
+             NULL, {name}, {description}, {repo}, {score}, 0, {validated}, {image}, {url}
            )
          """
        ).on(
