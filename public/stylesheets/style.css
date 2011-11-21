@@ -482,6 +482,10 @@ fieldset:first-child {
     float: right;
 }
 
+.rating a {
+    margin:0 0 0 10px;
+}
+
 .column-container .twitter-share-button {
     position:absolute;
     top:6px;
