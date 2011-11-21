@@ -104,21 +104,26 @@ a {color: #6FBAE7; text-decoration: none}
 
 #play {
     font-size:33px;
-    background:url(../images/play.png) 10px 0 no-repeat;
-    position:absolute;
     line-height:47px;
     font-weight:bold;
-    top:38px;
-    padding-left:72px;
-    left:5px;
+    margin:0 0 0 60px;
 }
 
 #exp {
     font-size:20px;
-    position:absolute;
-    top:51px;
-    left:142px;
     line-height:30px;
+}
+
+#play-experiments {
+    background:url(../images/play.png) 10px 0 no-repeat;
+    position:absolute;
+    top:38px;
+    left:10px;
+}
+
+#play-experiments:hover {
+    color:#6fbae7;
+    background:url(../images/play-hover.png) 10px 0 no-repeat;
 }
 
 .content h2 {
