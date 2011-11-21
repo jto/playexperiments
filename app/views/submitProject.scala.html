@@ -15,15 +15,15 @@
 
   @form(routes.Application.save) {
     <fieldset>
-      @inputText(pf("project.name"), 'label -> "Experiment name", 'placeholder -> "My super project", 'required -> "")(exinput)
-      @inputText(pf("author.name"), 'label -> "author name", 'placeholder -> "Guillaume Bort", 'required -> "")(exinput)
-      @inputText(pf("author.email"), 'label -> "author email", 'placeholder -> "me@me.com", 'required -> "")(exinput)
-      @inputText(pf("author.url"), 'label -> "author url", 'placeholder -> "http://mysite.com", 'required -> "")(exinput)
-      @inputText(pf("project.repo"), 'label -> "repository", 'placeholder -> "http://github.com/test/toto", 'required -> "")(exinput)
+      @inputText(pf("project.name"), 'label -> "Experiment name", 'placeholder -> "Play! Experiments", 'required -> "")(exinput)
+      @inputText(pf("author.name"), 'label -> "author(s) name(s)", 'placeholder -> "Julien Tournay, Anthony Aubertin, Paul Panserrieu", 'required -> "")(exinput)
+      @inputText(pf("author.email"), 'label -> "author(s) email(s)", 'placeholder -> "jto@zenexity.com, aau@zenexity.com, ppa@zenexity.com", 'required -> "")(exinput)
+      @inputText(pf("author.url"), 'label -> "author url", 'placeholder -> "http://zenexity.com", 'required -> "")(exinput)
+      @inputText(pf("project.repo"), 'label -> "repository", 'placeholder -> "http://github.com/jto/playexperiments", 'required -> "")(exinput)
     </fieldset>
     <fieldset>
-      @inputText(pf("project.image"), 'label -> "image", 'placeholder -> "http://mysite.com/images/test.png", 'required -> "")(exinput)
-      @inputText(pf("project.url"), 'label -> "project host", 'placeholder -> "http://mysite.com/demo", 'required -> "")(exinput)
+      @inputText(pf("project.image"), 'label -> "image (400x300)", 'placeholder -> "/assets/images/playexperiments.png", 'required -> "")(exinput)
+      @inputText(pf("project.url"), 'label -> "project host", 'placeholder -> "http://playexperiments.com", 'required -> "")(exinput)
       <dl>
           <dt><label for='@pf("project.description").id'>Description</label></dt>
         <dd>
