@@ -74,6 +74,7 @@ a {color: #6FBAE7; text-decoration: none}
 .header .button {
     position:absolute;
     text-decoration:none;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     right:18px;
     border:none;
@@ -315,6 +316,7 @@ table.experiments td.stars {
 fieldset {
     float:left;
     width:500px;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     height:400px;
     padding:20px;
@@ -344,6 +346,7 @@ input, textarea{
     height:30px;
     background:#f7f9fa;
     color:#647485;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     font-size:14px;
     padding:2px 4px;
@@ -368,6 +371,7 @@ textarea {
 form input[type='submit'] {
     float:right;
     text-decoration:none;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     border:none;
     background:url(../images/submit-button.png) 0px 0px no-repeat;
@@ -398,6 +402,7 @@ fieldset:first-child {
 .column-container {
     float:left;
     width:500px;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     min-height:300px;
     margin:0 0 0 7.5px;
@@ -408,6 +413,7 @@ fieldset:first-child {
     border: 1px solid #d6dbe4;
     border-radius:5px;
     width:100%;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     height:306px;
 }
@@ -416,6 +422,7 @@ fieldset:first-child {
     border:2px solid #fafafa;
     border-radius:5px;
     background-color:white;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     height:304px;
     width:100%;
@@ -430,6 +437,7 @@ fieldset:first-child {
 .slideshow .slideshow-top {
     height:25px;
     width:100%;
+    -webkit-box-sizing:border-box;
     box-sizing:border:box;
     border:1px solid red;
 }
@@ -475,6 +483,7 @@ fieldset:first-child {
 }
 
 .rating {
+    -webkit-box-sizing:border-box;
     box-sizing:border:box;
     width:100%;
     margin: 20px 0 0 0px;
