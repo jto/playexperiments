@@ -52,11 +52,10 @@
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var $rateContainer = $(".rating"),
-                $sel = $rateContainer.find("select"),
+            var $sel = $rateContainer.find("select"),
                 $a = $rateContainer.find("a");
 
-            $rateContainer.click(function () {
+            $a.click(function () {
                 $.ajax({
                     type:"POST",
                     url:"/vote/" + @project.id,
