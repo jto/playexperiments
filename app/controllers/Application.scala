@@ -12,7 +12,7 @@ import models._
 object Forms{
 
   val projectForm = Form(
-    of(Project.apply _)(
+    of(Project.apply _, Project.unapply _)(
       "project.id" -> ignored(NotAssigned),
       "project.name" -> requiredText,
       "project.description" -> requiredText,
@@ -26,7 +26,7 @@ object Forms{
   )
 
   val authorForm = Form(
-    of(Author.apply _)(
+    of(Author.apply _, Author.unapply _)(
       "author.email" -> requiredText,
       "author.name" -> requiredText,
       "author.url" -> optional(text)
@@ -81,7 +81,7 @@ object Application extends Controller {
 
   def validate(id: Long) = Action{ implicit request =>
     Play.current.configuration.getString("admin.secret").map { confsecret =>
-      val secret = request.body.urlFormEncoded("secret").head
+      val secret = request.body.asUrlFormEncoded.get("secret").head
       confsecret match{
         case s if s == secret => Project.validate(id); Ok("Validated")
         case _ => Forbidden
