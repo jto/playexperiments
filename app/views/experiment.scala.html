@@ -22,18 +22,20 @@
     </div>
 
     <div class="column-container">
-        <h2>@project.name</h2>
+        <h2 class="project-title">@project.name</h2>
         <a href="https://twitter.com/share"
             class="twitter-share-button" 
             data-count="horizontal">Tweet</a>
-        <span class="mini">by @project.authors.map(_.name).mkString(", ") - <a href="@project.url">@project.url</a> </span>
+        <p class="mini authors">
+            by @project.authors.map(_.name).mkString(", ") - <a href="@project.url">@project.url</a> 
+        </p>
         <p>@project.description</p>
         <div>
             <a href="@project.url">View experiment demo</a>
             <a href="@project.repo">View source code</a>
         </div>
         <div class="rating">
-            <span id="rate-btn">Rate experiment with</span>
+            <span id="rate-btn" data-ref="@project.id">Rate experiment with</span>
             <select>
                 <option value="1">1 star</option>
                 <option value="2">2 stars</option>
@@ -47,29 +49,8 @@
             </div>
         </div>
     </div>
-    
+
     <div class="comments"></div>
-    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var $rateContainer = $(".rating"),
-                $sel = $rateContainer.find("select"),
-                $a = $rateContainer.find("a");
-
-            $a.click(function () {
-                $.ajax({
-                    type:"POST",
-                    url:"/vote/" + @project.id,
-                    data:{"score": $sel.val()},
-                    success: function () {
-                        alert("Vote successful!");
-                    },
-                    error : function () {
-                        alert('Vote unsuccessful, please retry!');
-                    }
-                });
-            });     
-        });
-    </script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/rate.js")"></script>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 }
