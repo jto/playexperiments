@@ -14,9 +14,9 @@ object Author {
    * Parse a User from a ResultSet
    */
   val simple = {
-    get[String]("author.email") ~/
-    get[String]("author.name") ~/
-    get[Option[String]]("author.url") ^^ {
+    get[String]("author.email") ~
+    get[String]("author.name") ~
+    get[Option[String]]("author.url") map {
       case email ~ name ~ url => Author(email, name, url)
     }
   }
@@ -30,7 +30,7 @@ object Author {
     DB.withConnection { implicit connection =>
       SQL("select * from authors where email = {email}").on(
         'email -> email
-      ).as(Author.simple ?)
+      ).as(Author.simple.singleOpt)
     }
   }
 

@@ -24,18 +24,30 @@ object Project {
    * Parse a Project from a ResultSet
    */
   val simple = {
-    get[Pk[Long]]("project.id") ~/
-    get[String]("project.description") ~/
-    get[String]("project.name") ~/
-    get[Int]("project.score") ~/
-    get[Boolean]("project.validated") ~/
-    get[String]("project.image") ~/
-    get[Option[String]]("project.url") ~/
-    get[String]("project.repo") ~/
-    spanM(by=long("id"), Author.simple) ^^ {
-      case id ~ description ~ name ~ score ~ validated ~ image ~ url ~ repo ~ authors
-        => Project(id, name, description, repo, score, validated, image, authors, url)
-    }
+      val rs = 
+        (get[Pk[Long]]("project.id") ~
+        get[String]("project.description") ~
+        get[String]("project.name") ~
+        get[Int]("project.score") ~
+        get[Boolean]("project.validated") ~
+        get[String]("project.image") ~
+        get[Option[String]]("project.url") ~
+        get[String]("project.repo") ~
+        Author.simple).map {
+          case id ~ description ~ name ~ score ~ validated ~ image ~ url ~ repo ~ author
+            => (id, description, name, score, validated, image, url, repo, author)
+        } *;
+
+    rs.map(r =>
+        r.groupBy(_._1)
+        .flatMap{ case (k, ps) =>
+            ps.headOption.map{ p =>
+                val (id, description, name, score, validated, image, url, repo, author) = p
+                Project(id, name, description, repo, score, validated, image, ps.map(_._9), url)
+            }
+        }.toList
+    )
+    
   }
 
   // -- Queries
@@ -50,7 +62,10 @@ object Project {
         inner join project_author on project_author.project_id = project.id
         inner join  author on project_author.author_email = author.email
         order by score desc
-      """).as(Project.simple *)
+      """)
+      .as(Project.simple)
+      
+      
     }
   }
 
@@ -62,7 +77,7 @@ object Project {
         inner join  author on project_author.author_email = author.email
         where validated = true
         order by score desc
-      """).as(Project.simple *)
+      """).as(Project.simple)
     }
   }
 
@@ -78,7 +93,7 @@ object Project {
         where validated = true and id = {id}
       """).on(
         'id -> id
-      ).as(Project.simple ?)
+      ).as(Project.simple).headOption
     }
   }
 
@@ -116,7 +131,7 @@ object Project {
          'url -> project.url
        ).executeUpdate()
        
-       val p = project.copy(id = Id(SQL("select LAST_INSERT_ID()").as(scalar[Long])))
+       val p = project.copy(id = Id(SQL("select LAST_INSERT_ID()").as(scalar[Long].single)))
        
        project.authors.foreach{ a =>
          SQL("""

@@ -3,7 +3,8 @@ package controllers
 import play.api._
 import play.api.mvc._
 import play.api.data._
-import play.api.data.validation.Constraints._
+import play.api.data._
+import play.api.data.Forms._
 
 import anorm._
 
@@ -12,25 +13,25 @@ import models._
 object Forms{
 
   val projectForm = Form(
-    of(Project.apply _)(
-      "project.id" -> ignored(NotAssigned),
-      "project.name" -> requiredText,
-      "project.description" -> requiredText,
-      "project.repo" -> requiredText,
+    mapping(
+      "project.id" -> ignored(NotAssigned:Pk[Long]),
+      "project.name" -> nonEmptyText,
+      "project.description" -> nonEmptyText,
+      "project.repo" -> nonEmptyText,
       "project.score" -> ignored(0),
       "project.validated" -> ignored(false),
       "project.image" -> text,
-      "author.email" -> ignored(Nil),
+      "author.email" -> ignored(Nil:List[Author]),
       "project.url" -> optional(text)
-    )
+    )(Project.apply)(Project.unapply)
   )
 
   val authorForm = Form(
-    of(Author.apply _)(
-      "author.email" -> requiredText,
-      "author.name" -> requiredText,
+    mapping(
+      "author.email" -> nonEmptyText,
+      "author.name" -> nonEmptyText,
       "author.url" -> optional(text)
-    )
+    )(Author.apply)(Author.unapply)
   )
 
 }
@@ -81,7 +82,7 @@ object Application extends Controller {
 
   def validate(id: Long) = Action{ implicit request =>
     Play.current.configuration.getString("admin.secret").map { confsecret =>
-      val secret = request.body.urlFormEncoded("secret").head
+      val secret = request.body.asFormUrlEncoded.get("secret").head
       confsecret match{
         case s if s == secret => Project.validate(id); Ok("Validated")
         case _ => Forbidden

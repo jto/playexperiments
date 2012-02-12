@@ -150,24 +150,30 @@ a {color: #6FBAE7; text-decoration: none; font-weight: 600;}
     font-size:16px;
     color:#6fbae7;
     float:left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 300px;
 }
-.featured .featured-desc span{
+
+.featured .featured-desc p.desc {
+    margin: 0 0 5px 0 ;
+    color:#647485;
+    font-size:14px;
+}
+
+.featured .featured-desc .aut {
     font-size:12px;
     font-style:italic;
     color:#c4c8d6;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 180px;
+    width: 250px;
     white-space: nowrap;
     float: left;
-    margin: 8px 0 0 5px;
+    margin: 0 0 0 5px;
 }
-.featured .featured-desc p {
-    margin: 0 0 5px 0 ;
-    color:#647485;
-    font-size:14px;
-    clear:both;
-}
+
 .featured .pic {
     width:300px;
     height:180px;
@@ -179,6 +185,11 @@ a {color: #6FBAE7; text-decoration: none; font-weight: 600;}
 .stars {
     width:105px;
     height:17px;
+    clear:both;
+}
+
+.featured .stars {
+    padding:10px 0;
 }
 
 .full-star{
@@ -237,7 +248,9 @@ table.experiments .avatar {
    background:#dadfe8;
    display:inline-block;
    vertical-align: -14px;
+   float:left;
 }
+
 table.experiments .author img {
     width:34px;
     height:34px;
@@ -245,21 +258,17 @@ table.experiments .author img {
     border:1px solid white;
     background:#fafafa;
 }
-table.experiments .author .title {
+
+table.experiments .author p.title {
     color:#6FBAE7;
-    padding:0 0 0 10px;
-}
-table.experiments .author .coder {
-    padding:16px 0 0 10px;
-    font-style:italic;
-    font-size:12px;
-    color:#C4C8D6;
+    padding:11px 0 0 10px;
+    width:250px;
+    float:left;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 100px;
     white-space: nowrap;
-    float: right;
 }
+
 table.experiments td.desc {
     padding-left:10px;
     padding-top:11px;
@@ -483,4 +492,15 @@ fieldset:first-child {
 }
 .footer a:hover {
     color:#6fbae7;
+}
+.column-container .project-title {
+    margin-right:100px;
+    border:none;
+}
+.column-container .mini.authors {
+    width:100%;
+    border-top: 1px solid #d6dbe4;
+    padding-top:3px;
+    color: #C4C8D6;
+    margin:0;
 }

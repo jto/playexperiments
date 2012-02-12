@@ -27,11 +27,11 @@
                   </div>
               </div>
               <div class="featured-desc">
-                  <h3><a href="@routes.Application.get(p.id.get)">@p.name</a></h3> <span>by @p.authors.map(_.name).mkString(", ")</span>
-                  <p>@p.description</p>
+                  <h3><a href="@routes.Application.get(p.id.get)">@p.name</a></h3> <p class="aut">by @p.authors.map(_.name).mkString(", ")</p>
                   <div class="stars">
                       @stars(p.score)
                   </div>
+                  <p class="desc">@p.description</p>
               </div>
           </li>
       }
@@ -45,8 +45,7 @@
               <div class="avatar">
                   <img src="@p.image" alt="efefeefee">
               </div>
-              <span class="title"><a href="@routes.Application.get(p.id.get)">@p.name</a></span>
-              <span class="coder"> @p.authors.map(_.name).mkString(", ") </span>
+              <p class="title"><a href="@routes.Application.get(p.id.get)">@p.name</a></p>
           </td>
           <td class="desc"> @p.description.take(80) </td>
           <td class="stars">
