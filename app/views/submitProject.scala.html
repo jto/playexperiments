@@ -2,8 +2,9 @@
 
 @import helper._
 @import controllers.Forms._
+@import play.api.i18n.Lang.defaultLang
 
-@main("Welcome to PlayExperiments") {
+@main("Welcome to PlayExperiments.com") {
 <h2>Home > <span class="active">Submit experiment</span></h2>
 
 <p class="text">
@@ -15,15 +16,15 @@
 
   @form(routes.Application.save) {
     <fieldset>
-      @inputText(pf("project.name"), '_label -> "Experiment name", 'placeholder -> "Play! Experiments", 'required -> "")(exinput)
-      @inputText(pf("author.name"), '_label -> "author(s) name(s)", 'placeholder -> "Julien Tournay, Anthony Aubertin, Paul Panserrieu", 'required -> "")(exinput)
-      @inputText(pf("author.email"), '_label -> "author(s) email(s)", 'placeholder -> "jto@zenexity.com, aau@zenexity.com, ppa@zenexity.com", 'required -> "")(exinput)
-      @inputText(pf("author.url"), '_label -> "author url", 'placeholder -> "http://zenexity.com", 'required -> "")(exinput)
-      @inputText(pf("project.repo"), '_label -> "repository url", 'placeholder -> "http://github.com/jto/playexperiments", 'required -> "")(exinput)
+      @inputText(pf("project.name"), '_label -> "Experiment name", 'placeholder -> "Play! Experiments", 'required -> "")(exinput, defaultLang)
+      @inputText(pf("author.name"), '_label -> "author(s) name(s)", 'placeholder -> "Julien Tournay, Anthony Aubertin, Paul Panserrieu", 'required -> "")(exinput, defaultLang)
+      @inputText(pf("author.email"), '_label -> "author(s) email(s)", 'placeholder -> "jto@zenexity.com, aau@zenexity.com, ppa@zenexity.com", 'required -> "")(exinput, defaultLang)
+      @inputText(pf("author.url"), '_label -> "author url", 'placeholder -> "http://zenexity.com", 'required -> "")(exinput, defaultLang)
+      @inputText(pf("project.repo"), '_label -> "repository url", 'placeholder -> "http://github.com/jto/playexperiments", 'required -> "")(exinput, defaultLang)
     </fieldset>
     <fieldset>
-      @inputText(pf("project.image"), '_label -> "image url (400x300)", 'placeholder -> "/assets/images/playexperiments.png", 'required -> "")(exinput)
-      @inputText(pf("project.url"), '_label -> "project host", 'placeholder -> "http://playexperiments.com", 'required -> "")(exinput)
+      @inputText(pf("project.image"), '_label -> "image url (400x300)", 'placeholder -> "/assets/images/playexperiments.png", 'required -> "")(exinput, defaultLang)
+      @inputText(pf("project.url"), '_label -> "project host", 'placeholder -> "http://playexperiments.com", 'required -> "")(exinput, defaultLang)
       <dl>
           <dt><label for='@pf("project.description").id'>Description</label></dt>
         <dd>
